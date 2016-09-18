@@ -5,11 +5,19 @@
   <link rel="stylesheet" type="text/css" href="bower_components/foundation-sites/dist/foundation.min.css">
 </head>
 <body>
-
+  <div>
+      <label>Conjunto de atributos: (Ingresalos separador por 2 puntos cada uno)</label>
+      <input id="conjunto" type="text" placeholder="A:B:C:D:E:F"/>
+      <label>Dependencias funcionales:(Ingresalas con la siguiente estructura A:B>C A>B:C)</label>
+      <textarea id="df" placeholder="A:B>C A>B:C D>A"></textarea>
+      <button type="button" onclick="load();">Enviar</button>
+    <h6>L0: </h6><p id="l0"></p>
+  </div>
 
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/foundation-sites/dist/foundation.min.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
+
 </body>
 </html>
 
