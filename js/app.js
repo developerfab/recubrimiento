@@ -149,55 +149,103 @@ function combinar(ary2) {
   return ps;
 }
 
-var cantrendun = 0;
+var combinaciones = 0;
 
 
-function redundancia (implicante, l1){
-  console.log("implicante: " + implicante);
+function redundancia (implicante, lUno){
+  // console.log("implicante: " + implicante);
   var array = combinar(implicante);
-  console.log(array);
-
+  // console.log(array);
+  var aux = null;
   for (var i=0; i<array.length; i++){
-    for (var j=0; j<l1.length; j++){
+    for (var j=0; j<lUno.length; j++){
       var regex = reg("(^["+array[i]+"]+)(?=\>)\>[a-zA-Z\:]*");
-      var redun = l1[j].match(regex);
-      console.log(regex);
-      console.log(l1[j]);
+      var redun = lUno[j].match(regex);
+      // console.log(regex);
+      // console.log(lUno[j]);
 
       if (redun != null){
-        console.log("redundancia: "+ redun);
-        var aux    = implicante;
-        console.log("aux:  " + aux);
-        cantrendun = aux.length;
-        console.log("cantrendun: " + cantrendun)          
-        aux.push(redun[0].match(regexInplicado)[0]);
-        aux = eliminarDuplicados(aux);
-        console.log("aux sin duplicados:  " + aux);
+        // console.log("redundancia: "+ redun);
+        aux    = implicante;
+        // console.log("aux:  " + aux);
+        combinaciones = aux.length;
+        // console.log("combinaciones: " + combinaciones)
+        var newImplicado = redun[0].match(regexInplicado)[0];
         
-        if (aux.length > cantrendun){
-          console.log("LLAMANDO A REDUNDANCIA OTRA VEZ!!!");
-          redundancia(aux, l1);
-          console.log("Termino llamado de redundancia! " +  eliminarDuplicados(aux) + " implicante: " + implicante);
-
-        }else {
+        if (aux.indexOf(newImplicado) == -1) {
+          aux.push(newImplicado);
+          // console.log(aux);
+          // console.log("LLAMANDO A REDUNDANCIA OTRA VEZ!!!");
+          redundancia(aux, lUno);
+          // console.log("Termino llamado de redundancia! " +  eliminarDuplicados(aux) + " implicante: " + implicante);
         }
+
+        // console.log("aux sin duplicados:  " + aux);
       }
     }
+
   }
+  return aux;
 }
 
 
 //estoy probando deslde la ubicacion 6 del array l1 que es donde se presenta redundacia C:F>B 
-var l2 = function (l1){
-  var auxL1 = l1;
+var l2 = function (Ll1){
+  var auxL1 = Ll1;
   var aux   = "";
-  for (var i = 6; i<l1.length; i++){
-    aux            = l1[i];
+  var l2 = []
+  console.log("length: "+ Ll1.length)
+  for (var i = 0; i<Ll1.length; i++){
+    aux            = Ll1[i];
+    console.log("DF: " + aux)
     var implicante =  atributos(aux.match(regexInplicante)[0]);
-    auxL1.splice(i,1);
+    auxL1 = eliminar_elemento(Ll1, i);
     console.log("REDUNDANCIA DE: " + aux + "  SOBRE:  " + auxL1);
-    redundancia(implicante, auxL1);
+    var combinaciones = redundancia(implicante, auxL1);
+    var implicado = aux.match(regexInplicado)
+    console.log("combinaciones " +  combinaciones  + " implicado " + implicado);
+    if (combinaciones != null) {
+      if (comprobar(combinaciones, implicado)){
+        console.log(aux+ " es redundante!")
+      } else {
+        l2.push(aux);
+      }
+    }else {
+      l2.push(aux);
+    }
+    auxL1 = Ll1;
   }
+  console.log(l2)
 }
 
-l2(l1(strL0));
+var t = l1(strL0)
+
+l2(t, t);
+
+
+function eliminar_elemento (array, index){
+  var arrayNuevo = [];
+  for (var i=0; i < array.length; i++){
+    if (index != i){
+      arrayNuevo.push(array[i]);
+    }
+  }
+  return arrayNuevo;
+
+}
+
+
+function comprobar(objeto, imp){
+  for (var i=0; i<objeto.length; i++){
+
+    var str1 = new String(objeto[i]);
+    var str2 = new String(imp);
+    console.log("COMPROBANDO:    ---- --- --- -   " + str1 + "  " + str2);
+    if(str1[0] == str2[0]){
+      console.log("SON IGUALES !!!!!!!!!!!!" + str1 + "  " + str2);
+      return true;
+    }
+  }
+  return false;
+  
+}
