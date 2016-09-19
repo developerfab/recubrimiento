@@ -1,0 +1,10 @@
+var l2               = 
+var compL1           = [A:B>C, C>A, D>E, D>F, B:E>C, B:C>D, A:C:D>B, C:F>B, C:F>D, C:E>F]
+var i                = 0
+var implicantes      = A:B
+var inplicados       = C
+var arrayImplicantes = [A, B]
+var redundancia      = 
+var aux              = A:B>C
+var aux2             = [A, B]
+var j                = 0
