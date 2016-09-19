@@ -1,8 +1,8 @@
 # Recubrimiento minimo
 
 ### Autores:
-Sergio Gutierrez
-Cristian Rodriguez
+> Sergio Gutierrez,   Codigo: 20101020039
+> Cristian Rodriguez, Codigo: 20101020078
 
 para ver el ejemplo en vivo ingresa a https://fab48.github.io/recubrimiento/
 
