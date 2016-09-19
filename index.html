@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Recubrimiento minimo</title>
+  <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="bower_components/foundation-sites/dist/foundation.min.css">
 </head>
 <body>
-  <div>
-      <label>Conjunto de atributos: (Ingresalos separador por 2 puntos cada uno)</label>
-      <input id="conjunto" type="text" placeholder="A:B:C:D:E:F"/>
-      <label>Dependencias funcionales:(Ingresalas con la siguiente estructura A:B>C A>B:C)</label>
-      <textarea id="df" placeholder="A:B>C A>B:C D>A"></textarea>
-      <button type="button" onclick="load();">Enviar</button>
-    <h6>L0: </h6><p id="l0"></p>
-    <h6>L1: </h6><p id="l1"></p>
-    <h6>L2: </h6><p id="l2"></p>
+  <div class="row">
+    <div class="medium-12 columns">
+      <div class="header-container text-center">
+        <h1>RECUBRIMIENTO MINIMO</h1>
+      </div>
+    </div>
+    <div >
+      <div class="medium-6 columns">
+        <label>Conjunto de atributos: (Ingresalos separador por 2 puntos cada uno)</label>
+        <blockquote>A:B:C:D:E:F</blockquote>
+        <input id="conjunto" type="text" placeholder="A:B:C:D:E:F"/>
+      </div>
+      <div class="medium-6 columns">
+        <label>Dependencias funcionales:(Ingresalas separadas cada una por un espacio) </label>
+        <blockquote>A:B>C A>B:C</blockquote>
+        <input type="text" id="df" placeholder="A:B>C A>B:C D>A"></textarea>
+      </div>
+      <div class="text-center">
+       <button class="button" type="button" onclick="load();">Calcular</button>
+      </div>
+    </div>
+    <div class="alert-box success radius">
+      <h6>L0: </h6><blockquote id="l0"></blockquote>
+    </div>
+    <div class="alert-box success radius">
+      <h6>L1: </h6><blockquote id="l1"></blockquote>
+    </div>
+    <div class="alert-box success radius">
+      <h6>L2: </h6><blockquote id="l2"></blockquote>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="footer">
+      <p>Sergio Gutierrez &nbsp; | 20101020039</p>
+      <p>Cristian Rodriguez| 20101020078</p>
+    </div>
   </div>
 
   <script src="bower_components/jquery/dist/jquery.js"></script>
