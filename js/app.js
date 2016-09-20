@@ -24,6 +24,8 @@ function load(){
   luno = l1(l0);
   ldos = l2(luno, luno);
   l0 = prepare(l0);
+  luno = prepare(luno);
+  ldos = prepare(ldos);
   $("#l0").text("{ "+l0+" }")
   $("#l1").text("{ "+luno+" }")
   $("#l2").text("{ "+ldos.toString()+" }")
@@ -33,7 +35,7 @@ function load(){
 function prepare(lx){
   var retorno = "";
   for(var t = 0; t<lx.length; t++){
-    retorno = retorno+lx[t]+"\t";
+    retorno = retorno+lx[t]+"        ";
   }
   return retorno;
 }
