@@ -30,7 +30,7 @@ var l1 = function (l0){
   var strL0 = toDF(l0)
   var l0_df;
   //sacamos las de un implicante y las agregamos a l1
-  regDF_uno = /(([^:])([a-zA-Z])\>[a-zA-Z])/g; //regex para extraer DF de solo un implicante 
+  regDF_uno = /(([^\:]|^)([a-zA-Z])\>[a-zA-Z])[^\:]/g; //regex para extraer DF de solo un implicante 
   regDF_mas_uno = /([^:]\S)+([a-zA-Z])\>[a-zA-Z]/g; //regex para extraer DF de mas de un implicante 
   l1 =  eliminarEspacios(strL0.match(regDF_uno)); //elimina espacios de cada elemento de un array
   l0_df = strL0.match(regDF_mas_uno); //DF que tienen mas de un implicante A:B>C
