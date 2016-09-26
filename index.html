@@ -12,7 +12,7 @@
         <h1>RECUBRIMIENTO MINIMO</h1>
       </div>
     </div>
-    <div >
+    <div class="medium-12 medium-centered columns row">
       <div class="medium-5 columns">
         <label>Conjunto de atributos: (Ingresalos separador por 2 puntos cada uno)</label>
         <blockquote>A:B:C:D:E:F</blockquote>
@@ -21,33 +21,39 @@
       <div class="medium-7 columns">
         <label>Dependencias funcionales:(Ingresalas separadas cada una por un espacio) </label>
         <blockquote>A:B>C A>B:C</blockquote>
-        <input type="text" id="df" placeholder="A:B>C A>B:C D>A"></textarea>
+        <input type="text" id="df" placeholder="A:B>C A>B:C D>A"/>
+      </div>      
+    </div>
+    <div class="row text-center">
+      <div class="medium-12 medium-centered columns" >
+        <div class="callout secondary"><p id="alert"></p></div>
       </div>
-      <div class="text-center">
+      <div class="medium-12 text-center medium-centered columns">
        <button class="button" type="button" onclick="load();">Calcular</button>
-      </div>
-    </div>
-    <div class="alert-box success radius">
-      <h6>L0: </h6><pre class="row" style="font-family: Arial; font-weigth: 600;" id="l0"></pre>
-    </div>
-    <div class="alert-box success radius">
-      <h6>L1: </h6><pre class="row" style="font-family: Arial; font-weigth: 600;" id="l1"></pre>
-    </div>
-    <div class="alert-box success radius">
-      <h6>L2: </h6><pre class="row" style="font-family: Arial; font-weigth: 600;" id="l2"></pre>
-    </div>
-  </div>
-  <div class="row text-center">
-    <div class="footer">
-      <p>Sergio Gutierrez &nbsp; | 20101020039</p>
-      <p>Cristian Rodriguez| 20101020078</p>
-    </div>
-  </div>
+     </div>
+   </div>
 
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/foundation-sites/dist/foundation.min.js"></script>
-  <script type="text/javascript" src="js/recubrimiento.js"></script>
-  <script type="text/javascript" src="js/app.js"></script>
+   <div class="alert-box success radius">
+    <h6>L0: </h6><pre class="row" style="font-family: Arial; font-weigth: 600;" id="l0"></pre>
+  </div>
+  <div class="alert-box success radius">
+    <h6>L1: </h6><pre class="row" style="font-family: Arial; font-weigth: 600;" id="l1"></pre>
+  </div>
+  <div class="alert-box success radius">
+    <h6>L2: </h6><pre class="row" style="font-family: Arial; font-weigth: 600;" id="l2"></pre>
+  </div>
+</div>
+<div class="row text-center">
+  <div class="footer">
+    <p>Sergio Gutierrez &nbsp; | 20101020039</p>
+    <p>Cristian Rodriguez| 20101020078</p>
+  </div>
+</div>
+
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/foundation-sites/dist/foundation.min.js"></script>
+<script type="text/javascript" src="js/recubrimiento.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
 
 </body>
 </html>

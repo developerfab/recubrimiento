@@ -28,18 +28,21 @@ var lcero = function (DF){
 var l1 = function (l0){
   var l1 = [];
   var strL0 = toDF(l0)
-  var l0_df;
+  var l0_df = [];
   //sacamos las de un implicante y las agregamos a l1
   regDF_uno = /(([^\:]|^)([a-zA-Z])\>[a-zA-Z])(?!:)/g; //regex para extraer DF de solo un implicante 
   regDF_mas_uno = /([^:]\S)+([a-zA-Z])\>[a-zA-Z]/g; //regex para extraer DF de mas de un implicante 
   l1 =  eliminarEspacios(strL0.match(regDF_uno)); //elimina espacios de cada elemento de un array
   l0_df = strL0.match(regDF_mas_uno); //DF que tienen mas de un implicante A:B>C
   // factorExtraño("A:B>D", l0);
-  l0_df.forEach(function(element, index){
-    var isExtrano = factorExtraño(element, l0);
-    if (isExtrano[0][0].length > 0)
-      l1.push(isExtrano[0][0])
-  });
+  console.log(l0_df)
+  if (l0_df != null){
+    l0_df.forEach(function(element, index){
+      var isExtrano = factorExtraño(element, l0);
+      if (isExtrano[0][0].length > 0)
+        l1.push(isExtrano[0][0])
+    });
+  }
   console.log("impriminedo l1:")
   console.log(eliminarDuplicados(l1));
   return eliminarDuplicados(l1);
@@ -276,4 +279,53 @@ function eliminarEspacios(array){
   return array.map(function(df){
     return df.trim();
   })
+}
+
+function comprobarElementales (df) {
+  console.log("comprobando..");
+  var elemental = function(element){
+    console.log(element);
+    var implicado  = atributos(element.match(regexInplicado)[0]);
+    var implicante =  atributos(element.match(regexInplicante)[0]);
+    for (var i=0; i<implicado.length; i++){
+      if (comprobar(implicante, implicado[i])){
+        console.log("hay un elemental")
+        return 0
+      }
+    }
+    return 1;
+  }
+  even = df.filter(function (element) {
+    return elemental(element) == 0;
+  })
+  return even;
+}
+
+
+function comprobarDF(df, atr) {
+  console.log("comprobando atributos..");
+  var elemental = function(element){
+    // console.log(element);
+    var implicado  = atributos(element.match(regexInplicado)[0]);
+    var implicante =  atributos(element.match(regexInplicante)[0]);
+    // console.log(implicado.length)
+    for (var i=0; i<implicado.length; i++){
+      // console.log(atr + " -- "+ implicado[i])
+      if (!comprobar(atr, implicado[i])){
+        return 0
+      }
+    }
+    // console.log(implicante.length)
+    for (var i=0; i<implicante.length; i++){
+      // console.log(atr + " -- "+ implicante[i])
+      if (!comprobar(atr, implicante[i])){
+        return 0
+      }
+    }
+    return 1;
+  }
+  even = df.filter(function (element) {
+    return elemental(element) == 0;
+  })
+  return even;
 }
