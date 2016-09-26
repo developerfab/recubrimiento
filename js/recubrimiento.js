@@ -35,7 +35,6 @@ var l1 = function (l0){
   l1 =  eliminarEspacios(strL0.match(regDF_uno)); //elimina espacios de cada elemento de un array
   l0_df = strL0.match(regDF_mas_uno); //DF que tienen mas de un implicante A:B>C
   // factorExtraño("A:B>D", l0);
-  console.log(l0_df)
   if (l0_df != null){
     l0_df.forEach(function(element, index){
       var isExtrano = factorExtraño(element, l0);
@@ -43,8 +42,6 @@ var l1 = function (l0){
         l1.push(isExtrano[0][0])
     });
   }
-  console.log("impriminedo l1:")
-  console.log(eliminarDuplicados(l1));
   return eliminarDuplicados(l1);
 }
 
@@ -60,7 +57,6 @@ function factorExtraño(df, array){
   var contador = 0;
   combinacion.forEach(function(element, index){
     var el = redundancia(atributos(element), array);
-    console.log("redundancia: " + element + " ---- " + el)
     if (el != null){
       if(comprobar(el, implicado[0])){
         generadores_extranos.push(element);
@@ -83,7 +79,6 @@ function factorExtraño(df, array){
       })
     });
     nueva_df = eliminarDuplicados(nueva_df);
-    console.log("nueva_df: " + nueva_df)
     if (nueva_df.length > 0){
       var aux = atributos(implicante[0])
       aux.forEach(function(element, index){
@@ -282,14 +277,11 @@ function eliminarEspacios(array){
 }
 
 function comprobarElementales (df) {
-  console.log("comprobando..");
   var elemental = function(element){
-    console.log(element);
     var implicado  = atributos(element.match(regexInplicado)[0]);
     var implicante =  atributos(element.match(regexInplicante)[0]);
     for (var i=0; i<implicado.length; i++){
       if (comprobar(implicante, implicado[i])){
-        console.log("hay un elemental")
         return 0
       }
     }
@@ -303,21 +295,15 @@ function comprobarElementales (df) {
 
 
 function comprobarDF(df, atr) {
-  console.log("comprobando atributos..");
   var elemental = function(element){
-    // console.log(element);
     var implicado  = atributos(element.match(regexInplicado)[0]);
     var implicante =  atributos(element.match(regexInplicante)[0]);
-    // console.log(implicado.length)
     for (var i=0; i<implicado.length; i++){
-      // console.log(atr + " -- "+ implicado[i])
       if (!comprobar(atr, implicado[i])){
         return 0
       }
     }
-    // console.log(implicante.length)
     for (var i=0; i<implicante.length; i++){
-      // console.log(atr + " -- "+ implicante[i])
       if (!comprobar(atr, implicante[i])){
         return 0
       }
@@ -328,4 +314,26 @@ function comprobarDF(df, atr) {
     return elemental(element) == 0;
   })
   return even;
+}
+
+function getImplicados(df) {
+  var aux = []
+  df.forEach(function(element){
+    var implicados = atributos(element.match(regexInplicado)[0]);
+    implicados.forEach(function(ele){
+      aux.push(ele);
+    })
+  });
+  return eliminarDuplicados(aux);
+}
+
+function getImplicantes(df) {
+  var aux = []
+  df.forEach(function(element){
+    var implicantes = atributos(element.match(regexInplicante)[0]);
+    implicantes.forEach(function(ele){
+      aux.push(ele);
+    })
+  });
+  return eliminarDuplicados(aux);
 }
