@@ -34,9 +34,11 @@ var l1 = function (l0){
   regDF_mas_uno = /([^:]\S)+([a-zA-Z])\>[a-zA-Z]/g; //regex para extraer DF de mas de un implicante 
   l1 =  eliminarEspacios(strL0.match(regDF_uno)); //elimina espacios de cada elemento de un array
   l0_df = strL0.match(regDF_mas_uno); //DF que tienen mas de un implicante A:B>C
+  // factorExtraño("A:B>D", l0);
   l0_df.forEach(function(element, index){
     var isExtrano = factorExtraño(element, l0);
-    l1.push(isExtrano[0][0])
+    if (isExtrano[0][0].length > 0)
+      l1.push(isExtrano[0][0])
   });
   console.log("impriminedo l1:")
   console.log(eliminarDuplicados(l1));
@@ -44,48 +46,64 @@ var l1 = function (l0){
 }
 
 function factorExtraño(df, array){
+  // console.log(df)
+  // console.log(array)
   var implicado            = df.match(regexInplicado);
   var implicante           = df.match(regexInplicante);
   var combinacion          = combinar(atributos(implicante[0]));  
   var stringDF             = toDF(array);
   var generadores_extranos = [];
   combinacion.pop(); //eliminamos la ultima combinacion que es la mima df parámetro
+  var contador = 0;
   combinacion.forEach(function(element, index){
     var el = redundancia(atributos(element), array);
+    console.log("redundancia: " + element + " ---- " + el)
     if (el != null){
       if(comprobar(el, implicado[0])){
         generadores_extranos.push(element);
+        contador ++;
       }
     }
+
   });  
   var nueva_df    = [];
   var extranos    = [];
   var no_extramos = [];
   //si tenemos vas de un elemento generador, entonces comprobamos que no estén duplicados, y
   //extraemos [] de extraños y no extraños
-  generadores_extranos.forEach(function(df){
-    atributos(df).forEach(function(atr){
-      nueva_df.push(atr);
-    })
-  });
-  nueva_df = eliminarDuplicados(nueva_df);
-  if (nueva_df.length > 0){
-    atributos(implicante[0]).forEach(function(element, index){
-      if (!comprobar(nueva_df, element)){
-        extranos.push(element);
-      }else{
-        no_extramos.push(element);
-      }
+  if (contador != atributos(implicante[0]).length){
+
+
+    generadores_extranos.forEach(function(df){
+      atributos(df).forEach(function(atr){
+        nueva_df.push(atr);
+      })
     });
-    nueva_df = [arrToImplicantes(nueva_df)];
-    nueva_df[0]  = nueva_df[0] + ">" +  implicado[0];
-  }else {
-    no_extramos = implicante;
-    nueva_df = [df];
+    nueva_df = eliminarDuplicados(nueva_df);
+    console.log("nueva_df: " + nueva_df)
+    if (nueva_df.length > 0){
+      var aux = atributos(implicante[0])
+      aux.forEach(function(element, index){
+        if (!comprobar(nueva_df, element)){
+          extranos.push(element);
+        }else{
+          no_extramos.push(element);
+        }
+      });
+
+      nueva_df = [arrToImplicantes(nueva_df)];
+      nueva_df[0]  = nueva_df[0] + ">" +  implicado[0];
+    }else {
+      no_extramos = implicante;
+      nueva_df = [df];
+    }
   }
   if (nueva_df.length > 0)
-   nueva_df = arrToImplicantes(nueva_df);
- return [[nueva_df], extranos, no_extramos]
+    nueva_df = arrToImplicantes(nueva_df);
+  // console.log(nueva_df)
+  // console.log(extranos)
+  // console.log(no_extramos)
+  return [[nueva_df], extranos, no_extramos]
 }
 
 /////////////////////////////// L2 ///////////////////////////////
@@ -216,6 +234,23 @@ function comprobar(objeto, imp){
   }
   return false;  
 }
+
+
+function comprobarArray(objeto, imp){
+  if (objeto.length == imp.length){
+    for (var i=0; i<objeto.length; i++){    
+      var str1 = new String(objeto[i]);
+      var str2 = new String(imp[i]);
+      if(str1[0] != str2[0]){
+        bol = false;
+      }
+    }
+  }else {
+    return false;
+  }
+  return true;
+}
+
 
 // funcion que convierte un array en string implicante o implicado ["A", "B"] ----> "A:B"
 function arrToImplicantes(arr){
