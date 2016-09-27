@@ -1,10 +1,10 @@
-var getZ = function(df, atr){
+function getZ (df, atr){
   var implicados = getImplicados(df);
-  var z = atr.filter(function (element) {
+  var sdsd = atr.filter(function (element) {
     return comprobar(implicados, element) === false;
   });
-  console.log(z)
-  return z;
+  console.log(sdsd)
+  return sdsd;
 } 
 
 
@@ -17,21 +17,25 @@ var getW = function(df, atr){
   return w;
 } 
 
-getV = function (z, w, atr){
-  var aux = eliminarDuplicados(z.concat(w));
+var getV = function (zz, w, atr){
+  var aux = eliminarDuplicados(zz.concat(w));
+  console.log("aux " + aux)
   var v = atr.filter(function (element) {
-    return comprobar(implicantes, element) === false;
+    return comprobar(aux, element) === false;
   });
-  return ;
+  return v;
 
 }
 
 function probarZ (l2, atr){
-  z = getZ(l2, atr);
-  zplus = redundancia(z, l2);
+  var z2 = getZ(l2, atr);
+  zplus = redundancia(z2, l2);
   if (comprobarArray(zplus, atr)){
     console.log("Z es igual a T");
+    return true;
   }else {
     console.log("z es diferente a T");
+    return false;
   }
 }
+

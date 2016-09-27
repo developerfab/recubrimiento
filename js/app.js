@@ -42,10 +42,19 @@ function load(){
     $("#l2").text("{ "+pldos.toString()+" }") 
     var w = getW(ldos, atr);
     var z = getZ(ldos, atr);
+    var v = getV(z, w, atr);
     $("#z").text("Z = { "+atr+" }" + " - " + "{ "+ getImplicados(ldos) +" } = { " + z + " }");
     $("#zp").text("Z+ = { "+ redundancia(z, ldos) +" }");
-    probarZ(ldos, atr);
+    if (probarZ(ldos, atr)){
+      $("#resz").text("Z es igual a T, entonces Z es llave primaria.");
+    }else {
+      $("#resz").text("Z es diferente a T");
+    }
+    $("#w").text("W = { "+atr+" }" + " - " + "{ "+ getImplicantes(ldos) +" } = { " + w + " }");
+    $("#wp").text("W+ = { "+ redundancia(w, ldos) +" }");
 
+    $("#v").text("V = { " + v + " }");
+    probarZ(ldos, atr);
   }
   // getZ(ldos, atributos(strT));
 }

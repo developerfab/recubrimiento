@@ -124,7 +124,10 @@ function redundancia (implicante, lUno){
       }
     }
   }
-  return aux;
+  if (aux == null)
+    return implicante;
+  else
+    return aux;
 }
 
 
