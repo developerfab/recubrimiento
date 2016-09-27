@@ -16,12 +16,12 @@
       <div class="medium-5 columns">
         <label>Conjunto de atributos: (Ingresalos separador por 2 puntos cada uno)</label>
         <blockquote>A:B:C:D:E:F</blockquote>
-        <input id="conjunto" type="text" placeholder="A:B:C:D:E:F"/>
+        <input id="conjunto" type="text" placeholder="A:B:C:D:E:F" value="A:B:C:D:E:F"/>
       </div>
       <div class="medium-7 columns">
         <label>Dependencias funcionales:(Ingresalas separadas cada una por un espacio) </label>
         <blockquote>A:B>C A>B:C</blockquote>
-        <input type="text" id="df" placeholder="A:B>C A>B:C D>A"/>
+        <input type="text" id="df" placeholder="A>:B:F C:E>D D>C:E E>C C:A>E" value="A>B:F C:E>D D>C:E E>C C:A>E"/>
       </div>      
     </div>
     <div class="row text-center">
@@ -32,16 +32,25 @@
        <button class="button" type="button" onclick="load();">Calcular</button>
      </div>
    </div>
-
-   <div class="alert-box success radius">
-    <h6>L0: </h6><pre class="row" style="font-family: Arial; font-weigth: 600;" id="l0"></pre>
+   <div class="row">
+     <div class="alert-box success radius">
+      <h6>L0: </h6><pre class="row" style="font-family: Arial; font-weigth: 600;" id="l0"></pre>
+    </div>
+    <div class="alert-box success radius">
+      <h6>L1: </h6><pre class="row" style="font-family: Arial; font-weigth: 600;" id="l1"></pre>
+    </div>
+    <div class="alert-box success radius">
+      <h6>L2: </h6><pre class="row" style="font-family: Arial; font-weigth: 600;" id="l2"></pre>
+    </div>
   </div>
-  <div class="alert-box success radius">
-    <h6>L1: </h6><pre class="row" style="font-family: Arial; font-weigth: 600;" id="l1"></pre>
+  <div class="row">
+    <div class="medium-12 medium-centered columns">
+      <h2>Calculo de llaves primarias</h2>
+    </div>
+    <div class="callout secondary"><p id="z"></p></div>
+    <div class="callout secondary"><p id="zp"></p></div>
   </div>
-  <div class="alert-box success radius">
-    <h6>L2: </h6><pre class="row" style="font-family: Arial; font-weigth: 600;" id="l2"></pre>
-  </div>
+  <
 </div>
 <div class="row text-center">
   <div class="footer">
@@ -53,6 +62,7 @@
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/foundation-sites/dist/foundation.min.js"></script>
 <script type="text/javascript" src="js/recubrimiento.js"></script>
+<script type="text/javascript" src="js/llavep.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
 
 </body>
