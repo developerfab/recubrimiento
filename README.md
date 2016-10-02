@@ -1,4 +1,4 @@
-# Recubrimiento minimo
+# Recubrimiento minimo y calculo de llaves
 
 Autores:
 --------
