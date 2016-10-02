@@ -26,6 +26,20 @@ function getV(zz, w, atr){
   return v;
 }
 
+function probarZ(l2, atr){
+  var z2 = getZ(l2, atr);
+  zplus  = redundancia(z2, l2);
+  // console.log("zplus")
+  // console.log(zplus)
+  if (comprobarArray(zplus, atr)){
+    // console.log("Z es igual a T");
+    return true;
+  }else {
+    // console.log("z es diferente a T");
+    return false;
+  }
+}
+
 function getM2(z,v, l, atr){
   var combinaciones = combinar(v);
   // console.log(combinaciones);
