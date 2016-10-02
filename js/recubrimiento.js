@@ -133,24 +133,36 @@ function redundancia (implicante, lUno){
 
 
 var l2 = function (Ll1){
-  var auxL1 = Ll1;
-  var aux   = "";
-  var l2 = [];
-  for (var i = 0; i<Ll1.length; i++){
-    aux            = Ll1[i];
-    var implicante =  atributos(aux.match(regexInplicante)[0]);
-    auxL1          = eliminar_elemento(Ll1, i);
+  var auxL1_initial = Ll1;
+  var auxL1         = Ll1;
+  var aux           = "";
+  var l2            = [];
+  for (var i = 0; i<auxL1_initial.length; i++){
+    aux               = auxL1_initial[i];
+    var implicante    =  atributos(aux.match(regexInplicante)[0]);
+    auxL1             = eliminar_elemento(auxL1_initial, i);
+    console.log("Buscando redundandi de- " +aux + " implicante: " + implicante + " -sobre- " + auxL1)
     var combinaciones = redundancia(implicante, auxL1);
+
     var implicado     = aux.match(regexInplicado);
+    console.log("combinaciones: " + combinaciones)
     if (combinaciones != null) {
-      if (comprobar(combinaciones, implicado)){
+      var isGenerado = comprobar(combinaciones, implicado);
+      console.log("isGenerado " +  isGenerado);
+      if (isGenerado){
+        console.log("Es redundante " + auxL1_initial[i]);
+        auxL1_initial = eliminar_elemento(auxL1_initial, i);
+        console.log("nuevo L1 " + auxL1_initial);
+        i--;
+        
       } else {
+        console.log("añadiendo " + aux + " a L2");
         l2.push(aux);
       }
     }else {
       l2.push(aux);
     }
-    auxL1 = Ll1;
+    auxL1 = auxL1_initial;
   }
   return l2;
 }
