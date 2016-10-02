@@ -105,7 +105,7 @@ function factorExtraño(df, array){
 }
 
 /////////////////////////////// L2 ///////////////////////////////
-var combinaciones = 0;
+// genera todos los implicados de un atributo segun en conjunto de dependencias funcionales
 function redundancia (implicante, lUno){
   var array = combinar(implicante);
   var aux   = null;
@@ -115,7 +115,6 @@ function redundancia (implicante, lUno){
       var redun = lUno[j].match(regex);
       if (redun != null){
         aux              = implicante;
-        combinaciones    = aux.length;
         var newImplicado = redun[0].match(regexInplicado)[0];        
         if (aux.indexOf(newImplicado) == -1) {
           aux.push(newImplicado);
@@ -141,22 +140,22 @@ var l2 = function (Ll1){
     aux               = auxL1_initial[i];
     var implicante    =  atributos(aux.match(regexInplicante)[0]);
     auxL1             = eliminar_elemento(auxL1_initial, i);
-    console.log("Buscando redundandi de- " +aux + " implicante: " + implicante + " -sobre- " + auxL1)
+    // console.log("Buscando redundandi de- " +aux + " implicante: " + implicante + " -sobre- " + auxL1)
     var combinaciones = redundancia(implicante, auxL1);
 
     var implicado     = aux.match(regexInplicado);
-    console.log("combinaciones: " + combinaciones)
+    // console.log("combinaciones: " + combinaciones)
     if (combinaciones != null) {
       var isGenerado = comprobar(combinaciones, implicado);
-      console.log("isGenerado " +  isGenerado);
+      // console.log("isGenerado " +  isGenerado);
       if (isGenerado){
         console.log("Es redundante " + auxL1_initial[i]);
         auxL1_initial = eliminar_elemento(auxL1_initial, i);
-        console.log("nuevo L1 " + auxL1_initial);
+        // console.log("nuevo L1 " + auxL1_initial);
         i--;
         
       } else {
-        console.log("añadiendo " + aux + " a L2");
+        // console.log("añadiendo " + aux + " a L2");
         l2.push(aux);
       }
     }else {

@@ -54,23 +54,10 @@ function load(){
     $("#wp").text("W+ = { "+ redundancia(w, ldos) +" }");
 
     $("#v").text("V = { " + v + " }");
-    probarZ(ldos, atr);
+
+    console.log(getM2(z,v,ldos,atr));
+
   }
-  // getZ(ldos, atributos(strT));
 }
-// var l22 = ["A:B>C", "B:D>F:G", "A:E>C", "C>D:E"];
-// var atr = ["A", "B", "C", "D", "E", "F", "G"];
-// var l = ["C>D", "C>E", "A:B>C", "B:D>F", "B:D>G", "A:E>C"];
-// var lp = ["K:M:S>T:N", "L:P>M:T:S", "L:T>K", "L:N>S", "M:T>L", "S>L", "K:T>L"];
-// var LL2 = l2(l1(lcero(lp)));
-// console.log(l22 + " ----- " + atr)
-// var w = getW(l, atr);
-// var z = getZ(l, atr);
-
-// console.log("redundancia");
-// console.log(redundancia(z, l));
-// console.log(z + " #### " + w);
-// console.log(getV(z,w));
-
 
 
