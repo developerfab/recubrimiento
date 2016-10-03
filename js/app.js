@@ -93,6 +93,7 @@ function load(){
     $("#1N").text("No se encuentra en primera forma normal");
   }
 
+  //SE CALCULA 2N
   var rta2= normal2(ldos, zficti, v, M2);
   var valor2N = rta2[0];
   var primo = rta2[1];
@@ -109,6 +110,7 @@ function load(){
   $("#primo").text("PRIMOS: [ "+primo+" ]");
   $("#noprimo").text("NO PRIMOS: [ "+noprimo+" ]");
 
+  //SE CALCULA SI 3N
   var valor3N= normal3(ldos, primo, noprimo);
 
   if (valor3N==true){
@@ -118,7 +120,18 @@ function load(){
     console.log("NO TERCERA FORMA NORMAL");
     $("#3N").text("No se encuentra en tercera forma normal");
   }
-  console.log("********************************************");
+
+  //SE CALCULA BCN
+
+  var valorBNC= normalBNC(ldos, primo);
+
+  if (valorBNC==true){
+    console.log("BOICE CLOUD FORMA NORMAL");
+    $("#BCN").text("Se encuentra en BOYCE-COOD");
+  }else{
+    console.log("NO BCN");
+    $("#BCN").text("No se encuentra en BOYCE-COOD");
+  }
 
 }
 

@@ -410,8 +410,24 @@ function normal3(depFuncional, primos, noprimos){
       break;
     }
   }
+  var retorno2 = true;
   for(var i=0; i<noPrimo.length; i++){
     if(implicados.indexOf(noPrimo[i])!=-1){
+      retorno2 = false;
+      break;
+    }
+  }
+  retorno = retorno||retorno2;
+  return retorno;
+}
+
+//FUNCION PARA DETERMINA BNC
+function normalBNC(depFuncional, primos){
+  var retorno = true;
+  var implicantes = getZ(depFuncional, atributos(strT));
+  var implicados = primos.split(":");
+  for(var i=0; i<implicados.length; i++){
+    if(implicantes.indexOf(implicados[i])!=-1){
       retorno = false;
       break;
     }
