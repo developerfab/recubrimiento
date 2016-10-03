@@ -378,7 +378,45 @@ function normal2(depFuncional, siempre, talVez, claves){
   for (var i = 1; i< claves.length; i++){
     temp = calPrimos(temp,claves[i]);
   }
-  console.log("primos:", temp);
+  var primos = temp;
+  var noPrimos = calNoPrimos(primos);
+  var implicados = calImplicado(depFuncional);
+  var primoRe = primos;
+  var noprimoRe = noPrimos;
+  implicados = implicados.split(":");
+  noPrimos = noPrimos.split(":");
+  for(var i=0; i<noPrimos.length; i++){
+    if(implicados.indexOf(noPrimos[i])!=-1){
+      retorno = false;
+    }
+  }
+  console.log("primos:", primos);
+  console.log("no primos: ", noPrimos);
+  return [retorno, primoRe, noprimoRe];
+
+}
+
+function normal3(depFuncional, primos, noprimos){
+  var retorno = true;
+  console.log("*********************");
+  console.log(depFuncional);
+  console.log(strT);
+  var implicantes = getZ(depFuncional, atributos(strT));
+  var implicados = primos.split(":");
+  var noPrimo = noprimos.split(":");
+  for(var i=0; i<implicados.length; i++){
+    if(implicantes.indexOf(implicados[i])!=-1){
+      retorno = false;
+      break;
+    }
+  }
+  for(var i=0; i<noPrimo.length; i++){
+    if(implicados.indexOf(noPrimo[i])!=-1){
+      retorno = false;
+      break;
+    }
+  }
+  return retorno;
 }
 
 //FUNCION PARA DETERMINAR ATTR QUE NO ESTAN PRESENTES EN 2 ARRAYS
@@ -401,4 +439,36 @@ function calPrimos(temp, claves){
   console.log("temp2: "+temp2);
   console.log("temp3: "+ temp3);
   return retorno;
+}
+
+//FUNCION PARA CALCULAR NO PRIMOS
+function calNoPrimos(primos){
+  console.log("CALCULO DE NO PRIMOS");
+  var conjunto = strT.split(":");
+  primos = primos.split(":");
+  var noprimos = "";
+//  console.log("conjunto:" + conjunto);
+//  console.log("no primos: "+ noprimos);
+  for(var i = 0; i<conjunto.length; i++){
+    if(primos.indexOf(conjunto[i])==-1){
+      if(noprimos==""){
+        noprimos = conjunto[i];
+      }else{
+        noprimos = noprimos+":"+conjunto[i];
+      }
+    }
+  }
+  return noprimos;
+}
+
+function calImplicado(depFuncional){
+  var imp = "";
+  for (var i =0; i<depFuncional.length; i++){
+    if (imp==""){
+      imp = depFuncional[i].match(regexInplicado);
+    }else{
+      imp = imp+":"+depFuncional[i].match(regexInplicado);
+    }
+  }
+  return imp;
 }

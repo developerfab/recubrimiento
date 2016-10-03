@@ -82,18 +82,43 @@ function load(){
     var pM2 = prepare(M2);  
     $("#llaves").text("Llaves primarias = { "+ pM2.toString() +" }");
 
-    console.log("--------------------");
-    var valor = normal1(ldos);
-    if (valor==true){
-      console.log("PRIMERA FORMA NORMAL");
-      $("#1N").text("Se encuentra en primera forma normal");
-    }else{
-      console.log("NO PRIMERA FORMA NORMAL");
-      $("#1N").text("No se encuentra en primera forma normal");
-    }
-
-    var valor2N = normal2(ldos, z, v, M2);
   }
+  console.log("********************************************");
+  var valor = normal1(ldos);
+  if (valor==true){
+    console.log("PRIMERA FORMA NORMAL");
+    $("#1N").text("Se encuentra en primera forma normal");
+  }else{
+    console.log("NO PRIMERA FORMA NORMAL");
+    $("#1N").text("No se encuentra en primera forma normal");
+  }
+
+  var rta2= normal2(ldos, zficti, v, M2);
+  var valor2N = rta2[0];
+  var primo = rta2[1];
+  var noprimo = rta2[2];
+  if (valor2N==true){
+    console.log("SEGUNDA FORMA NORMAL");
+    $("#2N").text("Se encuentra en segunda forma normal");
+  }else{
+    console.log("NO SEGUNDA FORMA NORMAL");
+    console.log("RETORNO PRIMO: "+primo);
+    console.log("RETORNO NO PRIMO: "+noprimo);
+    $("#2N").text("No se encuentra en segunda forma normal");
+  }
+  $("#primo").text("PRIMOS: [ "+primo+" ]");
+  $("#noprimo").text("NO PRIMOS: [ "+noprimo+" ]");
+
+  var valor3N= normal3(ldos, primo, noprimo);
+
+  if (valor3N==true){
+    console.log("TERCERA FORMA NORMAL");
+    $("#3N").text("Se encuentra en tercera forma normal");
+  }else{
+    console.log("NO TERCERA FORMA NORMAL");
+    $("#3N").text("No se encuentra en tercera forma normal");
+  }
+  console.log("********************************************");
 
 }
 
