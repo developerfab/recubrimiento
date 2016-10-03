@@ -351,3 +351,54 @@ function getImplicantes(df) {
   });
   return eliminarDuplicados(aux);
 }
+
+//FUNCION PARA DETERMINAR SI SE ESTA EN 1N
+function normal1(depFuncional){
+  var retorno = true;
+  var implicado = "";
+  for(var i = 0; i<depFuncional.length; i++){
+    implicado = depFuncional[i].match(regexInplicado);
+    if (implicado.length > 1){
+      retorno = false;
+      break;
+    }
+  }
+  return retorno;
+}
+
+//FUNCION PARA DETERMINAR SI SE ESTA EN 2N
+function normal2(depFuncional, siempre, talVez, claves){
+  var retorno = true;
+  var primos = "";
+  var no_primos = "";
+  console.log("claves: "+claves);
+  console.log("siempre:"+siempre);
+  console.log("tal vez:"+talVez);
+  var temp = claves[0];
+  for (var i = 1; i< claves.length; i++){
+    temp = calPrimos(temp,claves[i]);
+  }
+  console.log("primos:", temp);
+}
+
+//FUNCION PARA DETERMINAR ATTR QUE NO ESTAN PRESENTES EN 2 ARRAYS
+function calPrimos(temp, claves){
+  console.log("----------------------");
+  console.log("claves: "+claves);
+  console.log("temp: "+temp);
+  var temp2 = temp.match(regexAtributos);
+  var temp3 = claves.match(regexAtributos);
+  var retorno = temp;
+  for (var j =0; j<temp3.length; j++){
+    if (temp2.indexOf(temp3[j]) == -1){
+      if(retorno == ""){
+        retorno = temp3[j];
+      }else{
+        retorno = retorno+ ":" + temp3[j];
+      }
+    }
+  }
+  console.log("temp2: "+temp2);
+  console.log("temp3: "+ temp3);
+  return retorno;
+}

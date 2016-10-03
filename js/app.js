@@ -21,6 +21,7 @@ var strDF = "";
 var l0   ="";
 var luno = "";
 var ldos = "";
+var arrM2 = "";
 
 var atr;
 var DF;
@@ -80,6 +81,18 @@ function load(){
     var M2 = getM2Optimo(M2_all);
     var pM2 = prepare(M2);  
     $("#llaves").text("Llaves primarias = { "+ pM2.toString() +" }");
+
+    console.log("--------------------");
+    var valor = normal1(ldos);
+    if (valor==true){
+      console.log("PRIMERA FORMA NORMAL");
+      $("#1N").text("Se encuentra en primera forma normal");
+    }else{
+      console.log("NO PRIMERA FORMA NORMAL");
+      $("#1N").text("No se encuentra en primera forma normal");
+    }
+
+    var valor2N = normal2(ldos, z, v, M2);
   }
 
 }
