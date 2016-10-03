@@ -54,8 +54,8 @@ function load(){
     $("#wp").text("W+ = { "+ redundancia(w, ldos) +" }");
 
     $("#v").text("V = { " + v + " }");
-	var M2_all = getM2(z,v,ldos,atr);
- 	var M2 = getM2Optimo(M2_all);
-	console.log(M2);
-	}
+    var M2_all = getM2(z,v,ldos,atr);
+    var M2 = getM2Optimo(M2_all);
+    console.log(M2);
+  }
 }
