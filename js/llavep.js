@@ -42,15 +42,53 @@ function probarZ(l2, atr){
 
 function getM2(z,v, l, atr){
   var combinaciones = combinar(v);
-  // console.log(combinaciones);
   var M1 = combinaciones.map(function(e){
-    return arrToImplicantes(z)+":"+e
+    if(arrToImplicantes(z).lenght == 0){
+      return e;
+    }
+    else{
+      return arrToImplicantes(z)+":"+e;
+    }
   });
-  // console.log(M1);
   var M2 = M1.filter(function(e){
     var generados = redundancia(atributos(e), l);
-    // console.log(generados)
     return comprobarArray(generados, atr) === true;
   });
   return M2;
 }
+
+// funcion que retornoa un array con las llaves optimas.
+function getM2Optimo(M2){
+  var optimos = [];
+  var arrsM2 = M2.map(function(e){
+	return atributos(e);
+  });
+  arrsM2.forEach(function(elemento, index){
+	var newarr = eliminar_elemento(arrsM2, index);
+	if(!contiene(elemento, newarr))
+		optimos.push(elemento);
+  });
+  return optimos.map(function(e){
+  	return arrToImplicantes(e);
+  });	
+}
+
+//function que retorna true  si almenos un array de arr2(conjunto de arrays) está contenido en el array "arr1"
+function contiene(arr1, arr2){
+  return arr2.some(function(element){
+	return contieneAB(arr1, element);
+  });
+}
+
+//verifica si el array arr2 está contenido en arr1
+function contieneAB(arr1, arr2){
+  return arr2.every(function(element){
+	var si = comprobar(arr1, element);
+
+  	return si;; 
+  });
+}
+
+
+
+///////////////////// fin //////////////
