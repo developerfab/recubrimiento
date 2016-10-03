@@ -4,6 +4,7 @@
   <title>Recubrimiento minimo</title>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="bower_components/foundation-sites/dist/foundation.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 </head>
 <body>
   <div class="row">
@@ -49,13 +50,15 @@
     </div>
     <div class="callout secondary"><p id="z"></p></div>
     <div class="callout secondary"><p id="zp"></p></div>
-     <div ><p id="resz"></p></div>
-
-    <div class="callout secondary"><p id="w"></p></div>
-    <div class="callout secondary"><p id="wp"></p></div>
-
-    <div class="callout secondary"><p id="v"></p></div>
+    <div ><p id="resz"></p></div>
+    <div class="llaves hiden">
+      <div class="callout secondary"><p id="w"></p></div>
+      <div class="callout secondary"><p id="wp"></p></div>
+      <div class="callout secondary"><p id="v"></p></div>
+      <div class="callout secondary"><p id="llaves"></p></div>
+    </div>
   </div>
+
 </div>
 <div class="row text-center">
   <div class="footer">
@@ -64,8 +67,41 @@
   </div>
 </div>
 
+<div class="reveal" id="Modal1" data-reveal>
+  <h1>Advertencia</h1>
+  <p class="lead" id="alert-sub">Existen atributos en las Dependecias Funcionales que no pertenecen al conjunto de atributos.</p>
+  <p id="alert1-text"></p>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+<div class="reveal" id="Modal2" data-reveal>
+  <h1>Advertencia</h1>
+  <p class="lead" id="alert-sub">Dependencias funcionales elementales encontradas</p>
+  <p id="alert2-text"></p>
+  <a class="button" id="d-elem" data-close>Aceptar</a>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+
+
 <script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/foundation-sites/dist/foundation.min.js"></script>
+<!-- <script src="bower_components/foundation-sites/dist/foundation.min.js"></script> -->
+<script  src="/bower_components/foundation-sites/js/foundation.core.js"></script>
+<script  src="/bower_components/foundation-sites/js/foundation.reveal.js"></script>
+<script  src="/bower_components/foundation-sites/js/foundation.util.keyboard.js"></script>
+<script  src="/bower_components/foundation-sites/js/foundation.util.box.js"></script>
+<script  src="/bower_components/foundation-sites/js/foundation.util.triggers.js"></script>
+<script  src="/bower_components/foundation-sites/js/foundation.util.mediaQuery.js"></script>
+<script type="text/javascript" src="/bower_components/foundation-sites/js/foundation.util.motion.js"></script>
+
+
+
 <script type="text/javascript" src="js/recubrimiento.js"></script>
 <script type="text/javascript" src="js/llavep.js"></script>
 <script type="text/javascript" src="js/app.js"></script>

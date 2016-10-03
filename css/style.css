@@ -1,0 +1,8 @@
+
+
+.llaves.hiden{
+  visibility: hidden;
+}
+.llave {
+  visibility: visible;
+}

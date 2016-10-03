@@ -1,4 +1,12 @@
 $(document).foundation();
+var error1;
+var error2;
+$(document).ready(function(){
+  error1 = new Foundation.Reveal($("#Modal1"));
+  error2 = new Foundation.Reveal($("#Modal2"));
+});
+
+
 
 var regexpDF        = /([a-zA-Z]\:*)+\>+([a-zA-Z]\:*)*/g;
 var regexInplicante = /([a-zA-Z]\:*)+(?=\>)/g;
@@ -27,9 +35,14 @@ function load(){
   var elementales = comprobarElementales(DF);
   var isValid     = comprobarDF(DF, atributos(strT));
   if (isValid.length > 0){
-    $("#alert").text("Existen atributos en las Dependecias Funcionales que no pertenecen al conjunto de atributos. " + " { " + isValid + " }")
+    $("#alert1-text").text("{ " + isValid + " }");
+    error1.open();
   }else if(elementales.length > 0){
-    $("#alert").text("No se permiten dependencias funcionales elementales!\n" + "\n { " + elementales+ " }")
+    $("#alert-text").text("{ " + elementales+ " }");    
+    error2.open();
+    strDF = eliminarElementales(DF, elementales);
+    console.log(DF);
+    $("#df").text(DF);
   }else {
     l0   = lcero(DF);
     luno = l1(l0);
@@ -45,17 +58,45 @@ function load(){
     var v = getV(z, w, atr);
     $("#z").text("Z = { "+atr+" }" + " - " + "{ "+ getImplicados(ldos) +" } = { " + z + " }");
     $("#zp").text("Z+ = { "+ redundancia(z, ldos) +" }");
+    
+
     if (probarZ(ldos, atr)){
+      $(".llaves").addClass("hiden");
       $("#resz").text("Z es igual a T, entonces Z es llave primaria.");
     }else {
+      $(".llaves").removeClass("hiden");
       $("#resz").text("Z es diferente a T");
-    }
-    $("#w").text("W = { "+atr+" }" + " - " + "{ "+ getImplicantes(ldos) +" } = { " + w + " }");
-    $("#wp").text("W+ = { "+ redundancia(w, ldos) +" }");
+      $("#w").text("W = { "+atr+" }" + " - " + "{ "+ getImplicantes(ldos) +" } = { " + w + " }");
+      $("#wp").text("W+ = { "+ redundancia(w, ldos) +" }");
 
-    $("#v").text("V = { " + v + " }");
-    var M2_all = getM2(z,v,ldos,atr);
-    var M2 = getM2Optimo(M2_all);
-    console.log(M2);
+      $("#v").text("V = { " + v + " }");
+      var M2_all = getM2(z,v,ldos,atr);
+      var M2 = getM2Optimo(M2_all);
+      var pM2 = prepare(M2);  
+      $("#llaves").text("Llaves primarias = { "+ pM2.toString() +" }");
+    }
+
   }
+}
+
+function eliminarElementales(DF, elementales){
+  console.log(DF);
+  console.log(elementales);
+  var index = [];
+  var result = DF;
+  DF.forEach(function(e, i){
+    elementales.forEach(function(el, ind){
+      if(e == el){
+        console.log("add")
+        index.push(i);
+      }
+    });
+  });
+  for (var i = index.length-1; i>=0; i--){
+
+    console.log("eliminando: " + index[i])
+    result = eliminar_elemento(result, index[i]);
+  }
+  return result;
+
 }
