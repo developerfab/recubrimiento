@@ -85,6 +85,7 @@ function load(){
   }
   console.log("********************************************");
   var valor = normal1(ldos);
+  var zficti = z;
   if (valor==true){
     console.log("PRIMERA FORMA NORMAL");
     $("#1N").text("Se encuentra en primera forma normal");
