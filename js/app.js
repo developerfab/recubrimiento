@@ -42,7 +42,7 @@ function load(){
     $("#alert1-text").text("{ " + isValid + " }");
     error1.open();
   }else if(elementales.length > 0){
-    $("#alert-text").text("{ " + elementales+ " }");    
+    $("#alert2-text").text("{ " + elementales+ " }");    
     error2.open();
     strDF = eliminarElementales(DF, elementales);    
     console.log(DF);
@@ -64,7 +64,7 @@ function load(){
   var v = getV(z, w, atr);
   $("#z").text("Z = { "+atr+" }" + " - " + "{ "+ getImplicados(ldos) +" } = { " + z + " }");
   $("#zp").text("Z+ = { "+ redundancia(z, ldos) +" }");
-  
+
 
   if (probarZ(ldos, atr)){
     $(".llaves").addClass("hiden");
