@@ -20,4 +20,4 @@ Casos de uso
 
 Clase uml
 ---------
-![alt tab](https://raw.githubusercontent.com/fab48/recubrimiento/master/uml.png)
+![alt tab](https://raw.githubusercontent.com/fab48/recubrimiento/taller3/bases.png)
